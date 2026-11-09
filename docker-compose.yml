@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    container_name: sabor_andino
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./sabor_andino:/app/sabor_andino
+    command: python manage.py runserver 0.0.0.0:8000
