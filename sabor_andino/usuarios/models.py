@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+##-- crea usuarios por email
 class UsuarioManager(BaseUserManager):
     def create_user(self, email, password = None, **extra_fields):
         if not email:
@@ -10,7 +11,7 @@ class UsuarioManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-
+    ##-- crea superusuario mediante rol "SOCIO_GERENTE"
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -18,7 +19,7 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('rol', 'SOCIO_GERENTE')
         return self.create_user(email, password, **extra_fields)
 
-
+##-- Option bar de creacion de rol de usuario
 class Usuario(AbstractUser):
     class Roles(models.TextChoices):
         SOCIO_GERENTE = 'SOCIO_GERENTE', 'Socio Gerente'
@@ -29,7 +30,8 @@ class Usuario(AbstractUser):
         JEFA_PLANTA = 'JEFA_PLANTA', 'Jefa de Planta'
 
     username = None
-
+    first_name = models.CharField("Nombre", max_length = 20)
+    last_name = models.CharField("Apellido",max_length = 20)
     email = models.EmailField('Correo electrónico', unique=True)
     dni = models.CharField('DNI', max_length=15, unique=True)
     telefono = models.CharField('Teléfono', max_length=25, blank=True)

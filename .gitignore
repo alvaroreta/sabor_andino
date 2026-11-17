@@ -34,16 +34,15 @@ htmlcov/
 .pytest_cache/
 .tox/
 
-# Docker
+
 *.pid
 
-# IDEs / editores
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Sistema operativo
+
 .DS_Store
 Thumbs.db
 desktop.ini
