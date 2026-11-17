@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+def control_materia_prima(request):
+    return render(request, 'calidad/control_mp.html')
+
+def liberar_lotes(request):
+    return render(request, 'calidad/liberar_lotes.html')
+    
