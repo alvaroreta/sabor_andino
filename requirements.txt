@@ -4,3 +4,4 @@ sqlparse==0.6.1
 tzdata==2026.6
 ##-- permite tratar el guardado de imagenes en bd
 Pillow==13.0.0
+
