@@ -108,9 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#-- Modifica configuración de lenguaje
+LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'UTC'
+#-- Moidifica configuración horaria a hora local(Salta, Arg)
+TIME_ZONE = 'America/Argentina/Salta'
 
 USE_I18N = True
 
@@ -131,3 +133,12 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+##-- Define modelo de autenticación de usuario
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+
+##-- Define rutas por defecto al autenticarse
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'perfil'
+LOGOUT_REDIRECT_URL = 'login'
