@@ -3,9 +3,33 @@
     margin: 0;
     padding: 0;
 }
-
+.cont-prin {
+    align-content: center;
+}
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+}
+input::placeholder,
+textarea::placeholder {
+    font-family: inherit;
+}
+input,
+textarea,
+select {
+    border: 1px solid #c25c32;
+    border-radius: 8px;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #c25c32;
+    outline-offset: 1px;
+}
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     background-color: #f4f2ef;
     color: #262220;
 }
@@ -17,7 +41,7 @@ body {
 
 .barra-lateral {
     width: 250px;
-    background-color: #3b2314;
+    background-color: #cf5408;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -68,7 +92,7 @@ body {
 }
 
 .contenedor-nev a:hover {
-    background-color: #5c3822;
+    background-color: #a64407;
 }
 
 .logout-form {
@@ -80,7 +104,7 @@ body {
 .btn-logout {
     width: 100%;
     padding: 10px;
-    background-color: #b83a2d;
+    background-color: #dececd;
     color: #ffffff;
     border: none;
     border-radius: 6px;
@@ -90,7 +114,7 @@ body {
 }
 
 .btn-logout:hover {
-    background-color: #962d22;
+    background-color: #beacaa;
 }
 
 .contenido {
@@ -110,4 +134,42 @@ body {
     .contenido {
         padding: 16px;
     }
+}
+
+.contenido-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.contenido-login form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(320px, 100%);
+}
+
+.contenido-login form p {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.boton-ingresar{
+    border-radius: 100px;
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(90deg, #ff7a00, #b3491c);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.boton-ingresar:hover {
+    background: linear-gradient(90deg, #e66f00, #933a17);
 }

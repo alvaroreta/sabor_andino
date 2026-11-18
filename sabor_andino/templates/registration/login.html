@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content_class %}contenido-login{% endblock %}
+
+{% block title %}Iniciar sesión - Sabor Andino{% endblock %}
+
+{% block content %}
+
+<h1>Iniciar sesión</h1>
+<div class="cont-prin">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="boton-ingresar">Ingresar</button>
+</form>
+</div>
+{% endblock %}
