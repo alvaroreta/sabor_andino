@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Nuevo usuario - Sabor Andino{% endblock %}
+
+{% block content %}
+<h1>Crear usuario</h1>
+
+<div class="cont-prin">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="boton-ingresar">Guardar</button>
+    </form>
+</div>
+{% endblock %}

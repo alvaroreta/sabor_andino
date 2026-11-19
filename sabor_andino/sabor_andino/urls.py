@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect, render
-from django.urls import path
+from django.urls import include, path
 
 
 def inicio(request):
@@ -30,10 +30,12 @@ def perfil(request):
     return render(request, 'base.html')
 
 
+
 urlpatterns = [
     path('', inicio, name='inicio'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('perfil/', perfil, name='perfil'),
     path('admin/', admin.site.urls),
+    path('usuarios/', include('usuarios.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

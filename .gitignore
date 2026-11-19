@@ -46,3 +46,7 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Migraciones (no se versionan)
+**/migrations/*.py
+!**/migrations/__init__.py
