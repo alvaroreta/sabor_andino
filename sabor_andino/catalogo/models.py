@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Producto(models.Model):
     id_producto = models.AutoField(primary_key=True)
     nombre = models.CharField('Nombre del producto', max_length=100)
@@ -14,5 +15,5 @@ class Producto(models.Model):
         verbose_name_plural = 'Productos'
 
     def __str__(self):
-        return f"[{self.codigo_sku}] {self.nombre} - {self.presentacion}"
+        return f"{self.nombre} - {self.presentacion}"
 
