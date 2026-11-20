@@ -8,7 +8,7 @@ class Lote(models.Model):
     fecha_elaboracion = models.DateField()
     hora_elaboracion = models.TimeField()
     cantidad_producto = models.DecimalField(max_digits=10, decimal_places=2)
-    estado_calidad = models.CharField(choices=[('PENDIENTE', 'Pendiente'), ('LIBERADO', 'Liberado'), ( 'RECHAZADO', 'Rechazado')], max_length=10, default= 'PENDIENTE')
+    
 
 class ConsumoInsumoLote(models.Model):
     id_consumo = models.AutoField(primary_key=True)
