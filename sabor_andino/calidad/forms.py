@@ -34,3 +34,20 @@ class ControlMateriaPrimaForm(forms.ModelForm):
             ('RECHAZADO', 'Rechazado'),
             ('EN_OBSERVACION', 'En Observación'),
         ]
+
+class LiberacionLoteForm(forms.ModelForm):
+    class Meta:
+        model = PlanillaCalidad
+        fields = ['id_lote', 'resultado']
+        widgets = {
+            'id_lote': forms.Select(attrs={'class': 'form-select'}),
+            'resultado': forms.Select(attrs={'class': 'form-select'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['resultado'].choices = [
+            ('LIBERADO', 'Liberado'),
+            ('RECHAZADO', 'Rechazado'),
+        ]
+

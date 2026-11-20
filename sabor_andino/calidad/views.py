@@ -35,3 +35,4 @@ def control_materia_prima(request):
 
 def liberar_lotes(request):
     return render(request, 'calidad/liberar_lotes.html')
+
