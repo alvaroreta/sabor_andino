@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from .forms import ControlMateriaPrimaForm
-
+from .forms import ControlMateriaPrimaForm, LiberacionLoteForm
+from .models import PlanillaCalidad
 
 @login_required # comentario: Se requiere que el usuario esté autenticado para acceder a esta vista
 def control_materia_prima(request):
@@ -26,13 +26,35 @@ def control_materia_prima(request):
             messages.success( #comentario: Se muestra un mensaje de éxito al usuario después de guardar el análisis de materia prima
                 request, 'Análisis de materia prima guardado correctamente.'
             )
-            return redirect('control_materia_prima')
+            return redirect('calidad:control_mp')
     else:
         form = ControlMateriaPrimaForm()
 
     return render(request, 'calidad/control_mp.html', {'form': form})
 
 
-def liberar_lotes(request):
-    return render(request, 'calidad/liberar_lotes.html')
+@login_required
+def liberar_lote(request):
+    if request.method == 'POST':
+        form = LiberacionLoteForm(request.POST)
+        if form.is_valid():
+            planilla = form.save(commit=False)
+            planilla.id_usuario = request.user
+            planilla.tipo_evaluacion = PlanillaCalidad.TipoEvaluacion.LOTE_PT
+            planilla.save()
+
+            messages.success(request, 'Evaluación de lote registrada correctamente.')
+            return redirect('calidad:liberar_lote')
+    else:
+        form = LiberacionLoteForm()
+
+    return render(request, 'calidad/liberar_lotes.html', {'form': form})
+
+
+@login_required
+def historial_calidad(request):
+    planillas = PlanillaCalidad.objects.select_related(
+        'id_usuario', 'id_detalle_acopio', 'id_lote'
+    ).all()
+    return render(request, 'calidad/historial.html', {'planillas': planillas})
 
