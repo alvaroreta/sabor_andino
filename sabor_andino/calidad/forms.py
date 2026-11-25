@@ -29,6 +29,7 @@ class ControlMateriaPrimaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['id_detalle_acopio'].empty_label = "Seleccione una opción"
         self.fields['resultado'].choices = [
             ('APROBADO', 'Aprobado'),
             ('RECHAZADO', 'Rechazado'),
@@ -46,6 +47,7 @@ class LiberacionLoteForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['id_lote'].empty_label = "Seleccione una opción"
         self.fields['resultado'].choices = [
             ('LIBERADO', 'Liberado'),
             ('RECHAZADO', 'Rechazado'),
