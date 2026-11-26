@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Proveedor(models.Model):
     id_proveedor = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     nombre = models.CharField('Nombre', max_length=150)
     telefono = models.CharField('Teléfono', max_length=30)
     direccion = models.CharField('Dirección', max_length=200)
@@ -21,6 +22,7 @@ class EstadoCalidad(models.TextChoices):
 
 class MateriaPrima(models.Model):
     id_materia_prima = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     id_proveedor = models.ForeignKey(
         Proveedor,
         on_delete=models.PROTECT,
@@ -44,6 +46,7 @@ class MateriaPrima(models.Model):
 
 class ComprobanteAcopio(models.Model):
     id_comprobante_acopio = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     id_proveedor = models.ForeignKey(
         Proveedor,
         on_delete=models.PROTECT,
@@ -67,6 +70,7 @@ class ComprobanteAcopio(models.Model):
 
 class DetalleAcopio(models.Model):
     id_detalle_acopio = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     id_comprobante_acopio = models.ForeignKey(
         ComprobanteAcopio,
         on_delete=models.CASCADE,

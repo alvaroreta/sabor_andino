@@ -1,5 +1,7 @@
 from django import forms
-from .models import Lote, ConsumoInsumoLote 
+from .models import Lote, ConsumoInsumoLote
+from catalogo.models import Producto
+from acopio.models import MateriaPrima
 
 class ProduccionForm(forms.ModelForm):
     class Meta:
@@ -9,6 +11,11 @@ class ProduccionForm(forms.ModelForm):
             'fecha_elaboracion': forms.DateInput(attrs={'type': 'date'}),
             'hora_elaboracion': forms.TimeInput(attrs={'type': 'time'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_producto'].queryset = Producto.objects.filter(is_active=True)
+
 class ConsumoInsumoLoteForm(forms.ModelForm):
     class Meta:
         model = ConsumoInsumoLote
@@ -16,3 +23,7 @@ class ConsumoInsumoLoteForm(forms.ModelForm):
         widgets = {
             'cantidad_utilizada_kg': forms.NumberInput(attrs={'step': '0.01'})
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_materia_prima'].queryset = MateriaPrima.objects.filter(is_active=True)

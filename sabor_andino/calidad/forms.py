@@ -1,5 +1,7 @@
 from django import forms
 from .models import PlanillaCalidad
+from acopio.models import DetalleAcopio
+from produccion.models import Lote
 
 
 class ControlMateriaPrimaForm(forms.ModelForm):
@@ -30,6 +32,7 @@ class ControlMateriaPrimaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['id_detalle_acopio'].empty_label = "Seleccione una opción"
+        self.fields['id_detalle_acopio'].queryset = DetalleAcopio.objects.filter(is_active=True)
         self.fields['resultado'].choices = [
             ('APROBADO', 'Aprobado'),
             ('RECHAZADO', 'Rechazado'),
@@ -48,6 +51,7 @@ class LiberacionLoteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['id_lote'].empty_label = "Seleccione una opción"
+        self.fields['id_lote'].queryset = Lote.objects.filter(is_active=True)
         self.fields['resultado'].choices = [
             ('LIBERADO', 'Liberado'),
             ('RECHAZADO', 'Rechazado'),

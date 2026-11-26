@@ -53,8 +53,8 @@ def liberar_lote(request):
 
 @login_required
 def historial_calidad(request):
-    planillas = PlanillaCalidad.objects.select_related(
+    planillas = PlanillaCalidad.objects.filter(is_active=True).select_related(
         'id_usuario', 'id_detalle_acopio', 'id_lote'
-    ).all()
+    )
     return render(request, 'calidad/historial.html', {'planillas': planillas})
 

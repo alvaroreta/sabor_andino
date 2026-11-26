@@ -13,6 +13,7 @@ class PlanillaCalidad(models.Model):
         EN_OBSERVACION = 'EN_OBSERVACION', 'En Observación'
 
     id_planilla_calidad = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Usuario evaluador')
     id_detalle_acopio = models.ForeignKey('acopio.DetalleAcopio', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Detalle de acopio')
     id_lote = models.ForeignKey('produccion.Lote', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Lote de producción')

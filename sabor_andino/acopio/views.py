@@ -7,8 +7,8 @@ from .forms import ProveedorForm, MateriaPrimaForm, ComprobanteAcopioForm, Detal
 
 @login_required
 def acopio_dashboard(request):
-    comprobantes = ComprobanteAcopio.objects.select_related('id_proveedor').order_by('-fecha_emision', '-hora_emision')[:10]
-    materias_primas = MateriaPrima.objects.select_related('id_proveedor').all()
+    comprobantes = ComprobanteAcopio.objects.filter(is_active=True).select_related('id_proveedor').order_by('-fecha_emision', '-hora_emision')[:10]
+    materias_primas = MateriaPrima.objects.filter(is_active=True).select_related('id_proveedor')
 
     context = {
         'comprobantes': comprobantes,
@@ -39,7 +39,7 @@ def crear_comprobante(request):
 
 @login_required
 def lista_proveedores(request):
-    proveedores = Proveedor.objects.all()
+    proveedores = Proveedor.objects.filter(is_active=True)
     return render(request, 'acopio/proveedores_lista.html', {'proveedores': proveedores})
 
 

@@ -12,7 +12,7 @@ from catalogo.models import Producto
 
 @login_required
 def lista_ajustes(request):
-    ajustes = AjusteStock.objects.select_related(
+    ajustes = AjusteStock.objects.filter(is_active=True).select_related(
         'id_usuario',
         'id_materia_prima',
         'id_producto'

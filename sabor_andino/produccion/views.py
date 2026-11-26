@@ -13,11 +13,11 @@ def crear_lote(request):
     return render(request, 'Produccion/crear_lote.html', {'form': form})
 
 def lista_lotes(request):
-    lotes = Lote.objects.select_related('id_producto').order_by('-fecha_elaboracion', '-hora_elaboracion')
+    lotes = Lote.objects.filter(is_active=True).select_related('id_producto').order_by('-fecha_elaboracion', '-hora_elaboracion')
     return render(request, 'Produccion/lista_lotes.html', {'lotes': lotes})
 
 def detalle_lote(request, id_lote):
-    lote=get_object_or_404(Lote, pk=id_lote)
+    lote=get_object_or_404(Lote, pk=id_lote, is_active=True)
 
     if request.method == 'POST':
         form = ConsumoInsumoLoteForm(request.POST)

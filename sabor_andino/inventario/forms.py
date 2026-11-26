@@ -3,6 +3,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from .models import AjusteStock
+from acopio.models import MateriaPrima
+from catalogo.models import Producto
 
 
 class AjusteStockForm(forms.ModelForm):
@@ -47,6 +49,11 @@ class AjusteStockForm(forms.ModelForm):
                 attrs={'class': 'form-control'}
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_materia_prima'].queryset = MateriaPrima.objects.filter(is_active=True)
+        self.fields['id_producto'].queryset = Producto.objects.filter(is_active=True)
 
     def clean(self):
         cleaned_data = super().clean()

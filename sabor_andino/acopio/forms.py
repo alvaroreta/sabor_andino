@@ -28,6 +28,10 @@ class MateriaPrimaForm(forms.ModelForm):
             'estado_calidad': forms.Select(attrs={'class': 'form-select'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_proveedor'].queryset = Proveedor.objects.filter(is_active=True)
+
 
 class ComprobanteAcopioForm(forms.ModelForm):
     class Meta:
@@ -40,6 +44,10 @@ class ComprobanteAcopioForm(forms.ModelForm):
             'porcentaje_humedad': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01', 'placeholder': '0.00 a 100.00'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_proveedor'].queryset = Proveedor.objects.filter(is_active=True)
+
 
 class DetalleAcopioForm(forms.ModelForm):
     class Meta:
@@ -50,3 +58,7 @@ class DetalleAcopioForm(forms.ModelForm):
             'kilos_recibidos': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'precio_unitario': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_materia_prima'].queryset = MateriaPrima.objects.filter(is_active=True)
