@@ -10,6 +10,7 @@ class PlanillaCalidad(models.Model):
         APROBADO = 'APROBADO', 'Aprobado'
         LIBERADO = 'LIBERADO', 'Liberado'
         RECHAZADO = 'RECHAZADO', 'Rechazado'
+        PENDIENTE = 'PENDIENTE', 'Pendiente'
         EN_OBSERVACION = 'EN_OBSERVACION', 'En Observación'
 
     id_planilla_calidad = models.AutoField(primary_key=True)

@@ -3,6 +3,11 @@ from django.db import models
 
 #Modelo de programacion previa a producir#
 class Lote(models.Model):
+    class EstadoCalidad(models.TextChoices):
+        PENDIENTE = 'PENDIENTE', 'Pendiente'
+        LIBERADO = 'LIBERADO', 'Liberado'
+        RECHAZADO = 'RECHAZADO', 'Rechazado'
+
     id_lote = models.AutoField(primary_key=True)
     is_active = models.BooleanField('Activo', default=True)
     id_producto = models.ForeignKey('catalogo.Producto',
@@ -10,6 +15,15 @@ class Lote(models.Model):
     fecha_elaboracion = models.DateField()
     hora_elaboracion = models.TimeField()
     cantidad_producto = models.DecimalField(max_digits=10, decimal_places=2)
+    estado_calidad = models.CharField(
+        'Estado de calidad',
+        max_length=10,
+        choices=EstadoCalidad.choices,
+        default=EstadoCalidad.PENDIENTE
+    )
+
+    def __str__(self):
+        return f"Lote #{self.id_lote} - {self.id_producto}"
     
 
 #Modelo de consumo de insumos por lote luego de producir#
