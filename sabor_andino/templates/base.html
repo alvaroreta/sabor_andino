@@ -45,7 +45,7 @@
                 {% endif %}
 
                 {% if user.rol == 'ENC_DEPOSITO' or user.rol == 'SOCIO_GERENTE' %}
-                <a href="#">Inventario</a>
+                <a href="{% url 'lista_ajustes' %}">Inventario</a>
                 {% endif %}
             </nav>
 
