@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Control de Materia Prima - Sabor Andino{% endblock %}
+
+{% block content %}
+<div>
+    <!-- Menú rápido -->
+    <nav>
+        <a href="{% url 'calidad:control_mp' %}">Control Materia Prima</a> |
+        <a href="{% url 'calidad:liberar_lote' %}">Liberación de Lotes</a> |
+        <a href="{% url 'calidad:historial' %}">Historial</a>
+    </nav>
+    <hr>
+
+    <!-- Mensajes -->
+    {% for message in messages %}
+        <p><strong>{{ message }}</strong></p>
+    {% endfor %}
+
+    <h1>Análisis de Ingreso de Materia Prima</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Análisis</button>
+    </form>
+</div>
+{% endblock %}

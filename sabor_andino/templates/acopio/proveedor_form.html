@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nuevo Proveedor - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if user.rol != 'ACOPIADOR' and user.rol != 'SOCIO_GERENTE' %}
+<div class="pantalla-error">
+    <p>Usted no tiene permisos para acceder a este módulo.</p>
+    <img src="{% static 'img/sabor_andino_logo.png' %}" alt="Sabor Andino" width="150" height="80">
+</div>
+{% endif %}
+
+{% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
+<h1>Registrar Nuevo Proveedor</h1>
+
+<div class="cont-prin">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="boton-ingresar">Guardar Proveedor</button>
+        <a href="{% url 'acopio:lista_proveedores' %}" class="btn-logout" style="text-decoration: none; display: inline-block; text-align: center; margin-left: 10px;">Cancelar</a>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

@@ -38,4 +38,8 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path('admin/', admin.site.urls),
     path('usuarios/', include('usuarios.urls')),
+    path('acopio/', include('acopio.urls')),
+    path('calidad/', include('calidad.urls')),
+    path('produccion/', include('produccion.urls')),
+    path('inventario/', include('inventario.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,3 +6,4 @@ app_name = 'usuarios'
 urlpatterns = [
     path('crear/', views.crear_usuario, name='crear'),
 ]
+

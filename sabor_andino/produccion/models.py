@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 
+#Modelo de programacion previa a producir#
 class Lote(models.Model):
     id_lote = models.AutoField(primary_key=True)
     id_producto = models.ForeignKey('catalogo.Producto',
@@ -10,6 +11,7 @@ class Lote(models.Model):
     cantidad_producto = models.DecimalField(max_digits=10, decimal_places=2)
     
 
+#Modelo de consumo de insumos por lote luego de producir#
 class ConsumoInsumoLote(models.Model):
     id_consumo = models.AutoField(primary_key=True)
     id_lote = models.ForeignKey('Lote', on_delete=models.CASCADE, db_column='id_lote')

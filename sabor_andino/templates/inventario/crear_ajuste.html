@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+
+{% block title %}Nuevo ajuste de stock - Sabor Andino{% endblock %}
+
+{% block content %}
+
+<h1>Registrar ajuste de stock</h1>
+
+<p>Complete los datos para registrar una entrada o salida de stock.</p>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <div>
+        <label for="{{ form.id_materia_prima.id_for_label }}">Materia prima</label>
+        {{ form.id_materia_prima }}
+        {{ form.id_materia_prima.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.id_producto.id_for_label }}">Producto</label>
+        {{ form.id_producto }}
+        {{ form.id_producto.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.tipo_ajuste.id_for_label }}">Tipo de ajuste</label>
+        {{ form.tipo_ajuste }}
+        {{ form.tipo_ajuste.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.cantidad.id_for_label }}">Cantidad</label>
+        {{ form.cantidad }}
+        {{ form.cantidad.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.motivo.id_for_label }}">Motivo del ajuste</label>
+        {{ form.motivo }}
+        {{ form.motivo.errors }}
+    </div>
+
+    <button type="submit">Guardar ajuste</button>
+
+    <a href="{% url 'lista_ajustes' %}">Cancelar</a>
+
+</form>
+
+{% endblock %}
