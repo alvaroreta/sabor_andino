@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %} 
+
+{% block title %}Nuevo usuario - Sabor Andino{% endblock %}
+
+{% block content %}
+
+{% if user.rol != 'SOCIO_GERENTE' %}
+<div class="pantalla-error">
+<p>Usted no debe estar aquí</p>
+ 
+           <img src="{% static 'img/sabor_andino_logo.png' %}" alt="Sabor Andino" width="150" height="80">
+
+   </div>
+    {% endif %}
+
+{% if user.rol == 'SOCIO_GERENTE' %}
+<h1>Crear usuario</h1>
+
+<div class="cont-prin">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="boton-ingresar">Guardar</button>
+    </form>
+</div>
+   {% endif %}
+{% endblock %}

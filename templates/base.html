@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sabor Andino{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    <div class="contenedor-barra">
+        {% if user.is_authenticated %}
+        <aside class="barra-lateral">
+            <div class="contenedor-logo">
+                <img src="{% static 'img/sabor_andino_logo.png' %}" alt="logo_sabor_andino" width="150" height="80">
+            </div>
+            <div class="barra-lateral-encabezado">
+                <p>{{ user.first_name }} {{ user.last_name }}</p>
+                <span>{{ user.get_rol_display }}</span>
+            </div>
+
+            <nav class="contenedor-nev">
+                <a href="{% url 'perfil' %}">Mi perfil</a>
+
+                {% if user.rol == 'SOCIO_GERENTE' %}
+                <a href="{% url 'usuarios:crear' %}">Gestión de Usuarios</a>
+                <a href="#">Catálogo y Precios</a>
+                {% endif %}
+
+                {% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
+                <a href="#">Acopio (Cachi)</a>
+                {% endif %}
+
+                {% if user.rol == 'AUX_LABORATORIO' or user.rol == 'RESP_CALIDAD' or user.rol == 'SOCIO_GERENTE' %}
+                <a href="#">Control de Calidad</a>
+                {% endif %}
+
+                {% if user.rol == 'JEFA_PLANTA' or user.rol == 'SOCIO_GERENTE' %}
+                <a href="#">Producción</a>
+                {% endif %}
+
+                {% if user.rol == 'ENC_DEPOSITO' or user.rol == 'SOCIO_GERENTE' %}
+                <a href="#">Inventario</a>
+                {% endif %}
+            </nav>
+
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">Cerrar sesión</button>
+            </form>
+        </aside>
+        {% endif %}
+
+        <main class="contenido {% block content_class %}{% endblock %}">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+
+</html>
