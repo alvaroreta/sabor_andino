@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from usuarios.decorators import roles_requeridos
 from .models import Proveedor, MateriaPrima, ComprobanteAcopio, DetalleAcopio
 from .forms import ProveedorForm, MateriaPrimaForm, ComprobanteAcopioForm, DetalleAcopioForm
 
 
-@login_required
+@roles_requeridos('ACOPIADOR', 'SOCIO_GERENTE')
 def acopio_dashboard(request):
     comprobantes = ComprobanteAcopio.objects.filter(is_active=True).select_related('id_proveedor').order_by('-fecha_emision', '-hora_emision')[:10]
     materias_primas = MateriaPrima.objects.filter(is_active=True).select_related('id_proveedor')
@@ -17,7 +17,7 @@ def acopio_dashboard(request):
     return render(request, 'acopio/acopio_dashboard.html', context)
 
 
-@login_required
+@roles_requeridos('ACOPIADOR', 'SOCIO_GERENTE')
 def crear_comprobante(request):
     if request.method == 'POST':
         form = ComprobanteAcopioForm(request.POST)
@@ -37,13 +37,13 @@ def crear_comprobante(request):
     return render(request, 'acopio/carga_acopio.html', {'form': form})
 
 
-@login_required
+@roles_requeridos('ACOPIADOR', 'SOCIO_GERENTE')
 def lista_proveedores(request):
     proveedores = Proveedor.objects.filter(is_active=True)
     return render(request, 'acopio/proveedores_lista.html', {'proveedores': proveedores})
 
 
-@login_required
+@roles_requeridos('ACOPIADOR', 'SOCIO_GERENTE')
 def crear_proveedor(request):
     if request.method == 'POST':
         form = ProveedorForm(request.POST)

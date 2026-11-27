@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import UsuarioForm
-from django.contrib.auth.decorators import login_required
+from .decorators import roles_requeridos
 
 
-@login_required
+@roles_requeridos('SOCIO_GERENTE')
 def crear_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST, request.FILES)

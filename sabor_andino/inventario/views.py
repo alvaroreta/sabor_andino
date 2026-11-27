@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from usuarios.decorators import roles_requeridos
 from django.db import transaction
 
 from .models import AjusteStock
@@ -10,7 +10,7 @@ from acopio.models import MateriaPrima
 from catalogo.models import Producto
 
 
-@login_required
+@roles_requeridos('ENC_DEPOSITO', 'SOCIO_GERENTE')
 def lista_ajustes(request):
     ajustes = AjusteStock.objects.filter(is_active=True).select_related(
         'id_usuario',
@@ -25,7 +25,7 @@ def lista_ajustes(request):
     )
 
 
-@login_required
+@roles_requeridos('ENC_DEPOSITO', 'SOCIO_GERENTE')
 def crear_ajuste(request):
     if request.method == 'POST':
         form = AjusteStockForm(request.POST)
