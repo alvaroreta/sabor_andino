@@ -6,13 +6,13 @@ from usuarios.decorators import roles_requeridos
 from .forms import PrecioProductoForm
 from .models import HistorialPrecio, Producto
 
-
+##-- Función de visulización de productos (is_active == True) restringido a SOCIO_GERENTE
 @roles_requeridos('SOCIO_GERENTE')
 def lista_productos(request):
     productos = Producto.objects.filter(is_active=True).order_by('nombre')
     return render(request, 'catalogo/lista.html', {'productos': productos})
 
-
+##-- Función de edición de precios restringido a SOCIO_GERENTE
 @roles_requeridos('SOCIO_GERENTE')
 def editar_precio(request, id_producto):
     producto = get_object_or_404(Producto, pk=id_producto, is_active=True)
@@ -39,6 +39,7 @@ def editar_precio(request, id_producto):
         id_producto=producto
     ).select_related('id_usuario')
 
+    ##-- La función retorna la pagina de catalogo actaulizada
     return render(request, 'catalogo/editar_precio.html', {
         'form': form,
         'producto': producto,

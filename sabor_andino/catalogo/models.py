@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-
+##-- Creación de tabla productos
 class Producto(models.Model):
     id_producto = models.AutoField(primary_key=True)
     is_active = models.BooleanField('Activo', default=True)
@@ -19,7 +19,7 @@ class Producto(models.Model):
     def __str__(self):
         return f"{self.nombre} - {self.presentacion}"
 
-
+##--Creación de tabla de precios historicos
 class HistorialPrecio(models.Model):
     id_historial = models.AutoField(primary_key=True)
     id_producto = models.ForeignKey(

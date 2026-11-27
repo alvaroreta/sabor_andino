@@ -3,6 +3,7 @@ from django import forms
 from .models import Producto
 
 
+##-- Formulario de precio de producto + funcion de retorno de valor de precio (int)
 class PrecioProductoForm(forms.ModelForm):
     class Meta:
         model = Producto

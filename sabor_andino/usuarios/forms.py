@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from .models import Usuario
 
-
+##-- Creación de formulario de alta de usuario
 class UsuarioForm(UserCreationForm):
 
     class Meta:
