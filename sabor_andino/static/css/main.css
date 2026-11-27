@@ -261,6 +261,18 @@ body {
     min-width: 0;
 }
 
+.tabla-estandar.tabla-perfil tbody th,
+.tabla-estandar.tabla-perfil tbody td {
+    background-color: transparent;
+}
+
+.tabla-estandar.tabla-perfil tbody tr,
+.tabla-estandar.tabla-perfil tbody tr:nth-child(even),
+.tabla-estandar.tabla-perfil tbody tr:hover {
+    background-color: transparent;
+    transition: none;
+}
+
 .tabla-estandar thead th {
     background: linear-gradient(180deg, #d85f10 0%, #bd4a05 100%);
     color: #ffffff;
