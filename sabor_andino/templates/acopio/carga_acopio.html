@@ -15,12 +15,14 @@
 <h1>Registrar Pesaje de Materia Prima (Cachi)</h1>
 
 <div class="cont-prin">
-    <form method="post">
+    <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit" class="boton-ingresar">Guardar Comprobante</button>
-        <a href="{% url 'acopio:acopio_dashboard' %}" class="btn-logout" style="text-decoration: none; display: inline-block; text-align: center; margin-left: 10px;">Cancelar</a>
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Guardar Comprobante</button>
+            <a href="{% url 'acopio:acopio_dashboard' %}" class="boton-secundario">Cancelar</a>
+        </div>
     </form>
 </div>
 {% endif %}

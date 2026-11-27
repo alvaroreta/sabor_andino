@@ -15,12 +15,14 @@
 <h1>Registrar Nuevo Proveedor</h1>
 
 <div class="cont-prin">
-    <form method="post">
+    <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit" class="boton-ingresar">Guardar Proveedor</button>
-        <a href="{% url 'acopio:lista_proveedores' %}" class="btn-logout" style="text-decoration: none; display: inline-block; text-align: center; margin-left: 10px;">Cancelar</a>
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Guardar Proveedor</button>
+            <a href="{% url 'acopio:lista_proveedores' %}" class="boton-secundario">Cancelar</a>
+        </div>
     </form>
 </div>
 {% endif %}

@@ -4,12 +4,7 @@
 
 {% block content %}
 <div>
-    <nav>
-        <a href="{% url 'calidad:control_mp' %}">Control Materia Prima</a> |
-        <a href="{% url 'calidad:liberar_lote' %}">Liberación de Lotes</a> |
-        <a href="{% url 'calidad:historial' %}">Historial</a>
-    </nav>
-    <hr>
+    {% include 'calidad/_nav.html' %}
 
     <h1>Historial de Planillas de Calidad</h1>
 

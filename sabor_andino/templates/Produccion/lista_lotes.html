@@ -4,7 +4,9 @@
 
 {% block content %}
     <h1>Lotes producidos</h1>
-    <a href="{% url 'produccion:crear_lote' %}">+ Nuevo lote</a>
+    <div style="margin-bottom: 20px;">
+        <a href="{% url 'produccion:crear_lote' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block;">+ Nuevo lote</a>
+    </div>
 
     <div class="tabla-responsive">
         <table class="tabla-estandar">

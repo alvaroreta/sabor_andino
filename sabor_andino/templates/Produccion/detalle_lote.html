@@ -33,9 +33,11 @@
     </div>
 
     <h3>Agregar insumo</h3>
-    <form method="post">
+    <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Agregar</button>
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Agregar</button>
+        </div>
     </form>
 {% endblock %}
