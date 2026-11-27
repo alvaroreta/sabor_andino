@@ -128,6 +128,13 @@ body {
     background-color: #a64407;
 }
 
+.contenedor-nev a.activo {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #f3b562;
+}
+
 .logout-form {
     margin-top: 20px;
     padding-top: 16px;
@@ -540,4 +547,29 @@ body {
         flex: 1 1 100%;
         text-align: center;
     }
+}
+
+.enlace-volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 8px 14px;
+    border: 1px solid #eedfd4;
+    border-radius: 999px;
+    background-color: #ffffff;
+    color: #8a4b1f;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(74, 42, 20, 0.06);
+    transition: all 0.15s ease;
+}
+
+.enlace-volver:hover {
+    background-color: #cf5408;
+    border-color: #cf5408;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(207, 84, 8, 0.22);
+    transform: translateY(-1px);
 }

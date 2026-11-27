@@ -3,7 +3,7 @@
 {% block title %} Lote #{{ lote.id_lote }} - Sabor Andino {% endblock %}
 
 {% block content %}
-    <a href="{% url 'produccion:lista_lotes' %}">← Volver a lotes</a>
+    <a href="{% url 'produccion:lista_lotes' %}" class="enlace-volver">← Volver a lotes</a>
 
     <h1>Lote #{{ lote.id_lote }} - {{ lote.id_producto }}</h1>
     <p>

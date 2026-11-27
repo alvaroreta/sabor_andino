@@ -7,7 +7,7 @@
 <h1>Mi perfil</h1>
 {% else %}
 <h1>Perfil de {{ perfil_usuario.first_name }} {{ perfil_usuario.last_name }}</h1>
-<p><a href="{% url 'usuarios:lista' %}">← Volver a la lista de usuarios</a></p>
+<a href="{% url 'usuarios:lista' %}" class="enlace-volver">← Volver a la lista de usuarios</a>
 {% endif %}
 
 <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
