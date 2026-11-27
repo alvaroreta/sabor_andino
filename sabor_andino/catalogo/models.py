@@ -3,6 +3,7 @@ from django.db import models
 
 class Producto(models.Model):
     id_producto = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
     nombre = models.CharField('Nombre del producto', max_length=100)
     linea = models.CharField('Línea', max_length=50)
     presentacion = models.CharField('Presentación', max_length=30)

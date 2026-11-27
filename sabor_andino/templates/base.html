@@ -33,19 +33,19 @@
                 {% endif %}
 
                 {% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
-                <a href="#">Acopio (Cachi)</a>
+                <a href="{% url 'acopio:acopio_dashboard' %}">Acopio (Cachi)</a>
                 {% endif %}
 
                 {% if user.rol == 'AUX_LABORATORIO' or user.rol == 'RESP_CALIDAD' or user.rol == 'SOCIO_GERENTE' %}
-                <a href="#">Control de Calidad</a>
+                <a href="{% url 'calidad:control_mp' %}">Control de Calidad</a>
                 {% endif %}
 
                 {% if user.rol == 'JEFA_PLANTA' or user.rol == 'SOCIO_GERENTE' %}
-                <a href="#">Producción</a>
+                <a href="{% url 'produccion:lista_lotes' %}">Producción</a>
                 {% endif %}
 
                 {% if user.rol == 'ENC_DEPOSITO' or user.rol == 'SOCIO_GERENTE' %}
-                <a href="#">Inventario</a>
+                <a href="{% url 'lista_ajustes' %}">Inventario</a>
                 {% endif %}
             </nav>
 
