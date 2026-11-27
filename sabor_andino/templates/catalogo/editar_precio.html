@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Editar precio - {{ producto.nombre }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'catalogo:lista' %}" class="enlace-volver">← Volver al catálogo</a>
+
+<h1>Editar precio</h1>
+
+{% for message in messages %}
+    <p><strong>{{ message }}</strong></p>
+{% endfor %}
+
+<div style="margin-bottom: 18px;">
+    <h2>{{ producto.nombre }}</h2>
+    <p>{{ producto.linea }} | {{ producto.presentacion }}</p>
+    <p>Precio actual: <strong>$ {{ producto.precio_lista_1|floatformat:2 }}</strong></p>
+    <p>Stock actual: {{ producto.stock_actual }}</p>
+</div>
+
+<form method="post" class="formulario" style="max-width: 480px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="acciones-formulario">
+        <button type="submit" class="boton-ingresar">Guardar precio</button>
+        <a href="{% url 'catalogo:lista' %}" class="boton-secundario">Cancelar</a>
+    </div>
+</form>
+
+<h2>Historial de precios</h2>
+
+<div class="tabla-responsive">
+    <table class="tabla-estandar">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Precio anterior</th>
+                <th>Precio nuevo</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cambio in historial %}
+            <tr>
+                <td>{{ cambio.fecha_cambio|date:"d/m/Y H:i" }}</td>
+                <td>$ {{ cambio.precio_anterior|floatformat:2 }}</td>
+                <td class="texto-destacado">$ {{ cambio.precio_nuevo|floatformat:2 }}</td>
+                <td>{{ cambio.id_usuario.first_name }} {{ cambio.id_usuario.last_name }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="celda-vacia">Todavía no hay cambios de precio registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
