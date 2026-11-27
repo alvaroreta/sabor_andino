@@ -4,12 +4,7 @@
 
 {% block content %}
 <div>
-    <nav>
-        <a href="{% url 'calidad:control_mp' %}">Control Materia Prima</a> |
-        <a href="{% url 'calidad:liberar_lote' %}">Liberación de Lotes</a> |
-        <a href="{% url 'calidad:historial' %}">Historial</a>
-    </nav>
-    <hr>
+    {% include 'calidad/_nav.html' %}
 
     {% for message in messages %}
         <p><strong>{{ message }}</strong></p>
@@ -43,10 +38,12 @@
 {% endif %}
 
 
-    <form method="post">
+    <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Registrar Liberación</button>
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Registrar Liberación</button>
+        </div>
     </form>
 </div>
 {% endblock %}

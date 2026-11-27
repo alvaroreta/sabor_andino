@@ -4,10 +4,13 @@
 
 {% block content %}
     <h1>Crear Nuevo Lote</h1>
-    <div class="prin"></div>
-    <form method="post">
+
+    <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Crear Lote</button>
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Crear Lote</button>
+            <a href="{% url 'produccion:lista_lotes' %}" class="boton-secundario">Cancelar</a>
+        </div>
     </form>
 {% endblock %}
