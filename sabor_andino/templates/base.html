@@ -28,7 +28,7 @@
                 <a href="{% url 'perfil' %}">Mi perfil</a>
 
                 {% if user.rol == 'SOCIO_GERENTE' %}
-                <a href="{% url 'usuarios:crear' %}">Gestión de Usuarios</a>
+                <a href="{% url 'usuarios:lista' %}">Gestión de Usuarios</a>
                 <a href="#">Catálogo y Precios</a>
                 {% endif %}
 

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Mi perfil - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if es_propio %}
+<h1>Mi perfil</h1>
+{% else %}
+<h1>Perfil de {{ perfil_usuario.first_name }} {{ perfil_usuario.last_name }}</h1>
+<p><a href="{% url 'usuarios:lista' %}">← Volver a la lista de usuarios</a></p>
+{% endif %}
+
+<div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+    <div>
+        {% if perfil_usuario.foto_perfil %}
+            <img src="{{ perfil_usuario.foto_perfil.url }}" alt="Foto de perfil" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%;">
+        {% else %}
+            <div style="width: 180px; height: 180px; border-radius: 50%; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #6c757d;">Sin foto</div>
+        {% endif %}
+    </div>
+
+    <table style="border-collapse: collapse; min-width: 420px;">
+        <tbody>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Apellido</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.last_name|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Nombre</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.first_name|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Correo electrónico</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.email|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">DNI</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.dni|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Teléfono</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.telefono|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Dirección</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.direccion|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Rol</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.get_rol_display }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Estado</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.is_active|yesno:"Activo,Inactivo" }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Último acceso</th>
+                <td style="padding: 8px 0;">
+                    {% if perfil_usuario.last_login %}{{ perfil_usuario.last_login|date:"d/m/Y H:i" }}{% else %}-{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 8px 20px 8px 0;">Fecha de alta</th>
+                <td style="padding: 8px 0;">{{ perfil_usuario.date_joined|date:"d/m/Y H:i" }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
