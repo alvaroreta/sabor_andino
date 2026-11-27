@@ -227,3 +227,138 @@ body {
         align-items: center;
     justify-content: center;
 }
+
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 18px;
+    background-color: #ffffff;
+    border: 1px solid #eedfd4;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(74, 42, 20, 0.08);
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabla-estandar {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    font-size: 0.93rem;
+    color: #3d332c;
+}
+
+.tabla-estandar.tabla-perfil {
+    min-width: 0;
+}
+
+.tabla-estandar thead th {
+    background: linear-gradient(180deg, #d85f10 0%, #bd4a05 100%);
+    color: #ffffff;
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tabla-estandar thead th:first-child {
+    border-top-left-radius: 11px;
+}
+
+.tabla-estandar thead th:last-child {
+    border-top-right-radius: 11px;
+}
+
+.tabla-estandar tbody th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1e6de;
+    background-color: #fcf8f5;
+    color: #6b574a;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabla-estandar tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1e6de;
+    vertical-align: middle;
+}
+
+.tabla-estandar tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.tabla-estandar tbody tr:nth-child(even) {
+    background-color: #fdfbf9;
+}
+
+.tabla-estandar tbody tr:hover {
+    background-color: #fff1e4;
+}
+
+.tabla-estandar tbody tr:last-child th,
+.tabla-estandar tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-estandar .celda-vacia {
+    text-align: center;
+    color: #8a7a70;
+    padding: 28px 16px;
+    font-style: italic;
+}
+
+.tabla-estandar .texto-destacado {
+    color: #b3491c;
+    font-weight: 700;
+}
+
+.tabla-estandar .acciones {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-tabla {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 13px;
+    border: 1px solid #e3d2c6;
+    border-radius: 999px;
+    background-color: #ffffff;
+    color: #8a4b1f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-tabla:hover {
+    background-color: #cf5408;
+    border-color: #cf5408;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(207, 84, 8, 0.25);
+    transform: translateY(-1px);
+}
+
+.btn-tabla-peligro {
+    border-color: #e7c2c6;
+    color: #b02a37;
+}
+
+.btn-tabla-peligro:hover {
+    background-color: #b02a37;
+    border-color: #b02a37;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(176, 42, 55, 0.22);
+}

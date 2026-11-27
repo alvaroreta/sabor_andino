@@ -19,51 +19,53 @@
         {% endif %}
     </div>
 
-    <table style="border-collapse: collapse; min-width: 420px;">
-        <tbody>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Apellido</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.last_name|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Nombre</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.first_name|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Correo electrónico</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.email|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">DNI</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.dni|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Teléfono</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.telefono|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Dirección</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.direccion|default:"-" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Rol</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.get_rol_display }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Estado</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.is_active|yesno:"Activo,Inactivo" }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Último acceso</th>
-                <td style="padding: 8px 0;">
-                    {% if perfil_usuario.last_login %}{{ perfil_usuario.last_login|date:"d/m/Y H:i" }}{% else %}-{% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align: left; padding: 8px 20px 8px 0;">Fecha de alta</th>
-                <td style="padding: 8px 0;">{{ perfil_usuario.date_joined|date:"d/m/Y H:i" }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tabla-responsive" style="flex: 1; min-width: 320px; margin-top: 0;">
+        <table class="tabla-estandar tabla-perfil">
+            <tbody>
+                <tr>
+                    <th>Apellido</th>
+                    <td>{{ perfil_usuario.last_name|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ perfil_usuario.first_name|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Correo electrónico</th>
+                    <td>{{ perfil_usuario.email|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>DNI</th>
+                    <td>{{ perfil_usuario.dni|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ perfil_usuario.telefono|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>{{ perfil_usuario.direccion|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Rol</th>
+                    <td>{{ perfil_usuario.get_rol_display }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ perfil_usuario.is_active|yesno:"Activo,Inactivo" }}</td>
+                </tr>
+                <tr>
+                    <th>Último acceso</th>
+                    <td>
+                        {% if perfil_usuario.last_login %}{{ perfil_usuario.last_login|date:"d/m/Y H:i" }}{% else %}-{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha de alta</th>
+                    <td>{{ perfil_usuario.date_joined|date:"d/m/Y H:i" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

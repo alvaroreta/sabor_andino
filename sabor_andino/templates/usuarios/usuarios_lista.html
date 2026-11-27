@@ -9,32 +9,36 @@
     <a href="{% url 'usuarios:crear' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block;">+ Nuevo usuario</a>
 </div>
 
-<table style="width: 100%; border-collapse: collapse;">
-    <thead>
-        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-            <th style="padding: 10px; text-align: left;">Apellido</th>
-            <th style="padding: 10px; text-align: left;">Nombre</th>
-            <th style="padding: 10px; text-align: left;">Rol</th>
-            <th style="padding: 10px; text-align: left;">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for usuario in usuarios %}
-        <tr style="border-bottom: 1px solid #dee2e6;">
-            <td style="padding: 10px;">{{ usuario.last_name }}</td>
-            <td style="padding: 10px;">{{ usuario.first_name }}</td>
-            <td style="padding: 10px;">{{ usuario.get_rol_display }}</td>
-            <td style="padding: 10px;">
-                <a href="{% url 'usuarios:detalle' usuario.pk %}" style="padding: 4px 8px; margin-right: 4px; text-decoration: none; border: 1px solid #adb5bd; display: inline-block;">VER</a>
-                <button type="button" style="padding: 4px 8px; margin-right: 4px;">EDITAR</button>
-                <button type="button" style="padding: 4px 8px;">ELIMINAR</button>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" style="padding: 20px; text-align: center;">No hay usuarios registrados.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="tabla-responsive">
+    <table class="tabla-estandar">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.last_name }}</td>
+                <td>{{ usuario.first_name }}</td>
+                <td>{{ usuario.get_rol_display }}</td>
+                <td>
+                    <div class="acciones">
+                        <a href="{% url 'usuarios:detalle' usuario.pk %}" class="btn-tabla">VER</a>
+                        <button type="button" class="btn-tabla">EDITAR</button>
+                        <button type="button" class="btn-tabla btn-tabla-peligro">ELIMINAR</button>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="celda-vacia">No hay usuarios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

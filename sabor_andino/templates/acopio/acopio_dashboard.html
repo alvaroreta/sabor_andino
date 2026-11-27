@@ -22,34 +22,36 @@
 <div class="cont-prin">
     <h2>Últimos Comprobantes de Recepción</h2>
     {% if comprobantes %}
-        <table class="tabla-custom" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+    <div class="tabla-responsive">
+        <table class="tabla-estandar">
             <thead>
-                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-                    <th style="padding: 10px;">N° Comprobante</th>
-                    <th style="padding: 10px;">Proveedor</th>
-                    <th style="padding: 10px;">Fecha</th>
-                    <th style="padding: 10px;">Bruto (Kg)</th>
-                    <th style="padding: 10px;">Tara (Kg)</th>
-                    <th style="padding: 10px;">Neto (Kg)</th>
-                    <th style="padding: 10px;">Humedad (%)</th>
+                <tr>
+                    <th>N° Comprobante</th>
+                    <th>Proveedor</th>
+                    <th>Fecha</th>
+                    <th>Bruto (Kg)</th>
+                    <th>Tara (Kg)</th>
+                    <th>Neto (Kg)</th>
+                    <th>Humedad (%)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for c in comprobantes %}
-                <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
-                    <td style="padding: 10px;"><strong>ACO-{{ c.id_comprobante_acopio|stringformat:"05d" }}</strong></td>
-                    <td style="padding: 10px;">{{ c.id_proveedor.nombre }}</td>
-                    <td style="padding: 10px;">{{ c.fecha_emision|date:"d/m/Y" }}</td>
-                    <td style="padding: 10px;">{{ c.kilos_brutos }}</td>
-                    <td style="padding: 10px;">{{ c.tara }}</td>
-                    <td style="padding: 10px; color: #2b6cb0; font-weight: bold;">{{ c.kilos_netos }}</td>
-                    <td style="padding: 10px;">{{ c.porcentaje_humedad }}%</td>
+                <tr>
+                    <td><strong>ACO-{{ c.id_comprobante_acopio|stringformat:"05d" }}</strong></td>
+                    <td>{{ c.id_proveedor.nombre }}</td>
+                    <td>{{ c.fecha_emision|date:"d/m/Y" }}</td>
+                    <td>{{ c.kilos_brutos }}</td>
+                    <td>{{ c.tara }}</td>
+                    <td class="texto-destacado">{{ c.kilos_netos }}</td>
+                    <td>{{ c.porcentaje_humedad }}%</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     {% else %}
-        <p style="margin-top: 15px;">No hay comprobantes de acopio registrados.</p>
+    <p style="margin-top: 15px;">No hay comprobantes de acopio registrados.</p>
     {% endif %}
 </div>
 {% endif %}

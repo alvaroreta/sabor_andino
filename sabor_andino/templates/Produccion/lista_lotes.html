@@ -6,19 +6,20 @@
     <h1>Lotes producidos</h1>
     <a href="{% url 'produccion:crear_lote' %}">+ Nuevo lote</a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>N° Lote</th>
-                <th>Producto</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Cantidad</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lote in lotes %}
+    <div class="tabla-responsive">
+        <table class="tabla-estandar">
+            <thead>
+                <tr>
+                    <th>N° Lote</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Cantidad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lote in lotes %}
                 <tr>
                     <td>{{ lote.id_lote }}</td>
                     <td>{{ lote.id_producto }}</td>
@@ -26,12 +27,15 @@
                     <td>{{ lote.hora_elaboracion|time:"H:i" }}</td>
                     <td>{{ lote.cantidad_producto }}</td>
                     <td>
-                        <a href="{% url 'produccion:detalle_lote' lote.id_lote %}">Ver detalles</a>
+                        <a href="{% url 'produccion:detalle_lote' lote.id_lote %}" class="btn-tabla">Ver detalles</a>
                     </td>
                 </tr>
-            {% empty %}
-                <tr><td colspan="6">Todavía no hay lotes cargados.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="celda-vacia">Todavía no hay lotes cargados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
