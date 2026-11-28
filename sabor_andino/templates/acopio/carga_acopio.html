@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Carga de Acopio - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if user.rol != 'ACOPIADOR' and user.rol != 'SOCIO_GERENTE' %}
+<div class="pantalla-error">
+    <p>Usted no tiene permisos para acceder a este módulo.</p>
+    <img src="{% static 'img/sabor_andino_logo.png' %}" alt="Sabor Andino" width="150" height="80">
+</div>
+{% endif %}
+
+{% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
+<h1>Registrar Pesaje de Materia Prima (Cachi)</h1>
+
+<div class="cont-prin">
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Guardar Comprobante</button>
+            <a href="{% url 'acopio:acopio_dashboard' %}" class="boton-secundario">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

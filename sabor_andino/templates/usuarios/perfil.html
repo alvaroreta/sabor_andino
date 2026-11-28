@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Mi perfil - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if es_propio %}
+<h1>Mi perfil</h1>
+{% else %}
+<h1>Perfil de {{ perfil_usuario.first_name }} {{ perfil_usuario.last_name }}</h1>
+<a href="{% url 'usuarios:lista' %}" class="enlace-volver">← Volver a la lista de usuarios</a>
+{% endif %}
+
+<div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+    <div>
+        {% if perfil_usuario.foto_perfil %}
+            <img src="{{ perfil_usuario.foto_perfil.url }}" alt="Foto de perfil" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%;">
+        {% else %}
+            <div style="width: 180px; height: 180px; border-radius: 50%; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #6c757d;">Sin foto</div>
+        {% endif %}
+    </div>
+
+    <div class="tabla-responsive" style="flex: 1; min-width: 320px; margin-top: 0;">
+        <table class="tabla-estandar tabla-perfil">
+            <tbody>
+                <tr>
+                    <th>Apellido</th>
+                    <td>{{ perfil_usuario.last_name|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ perfil_usuario.first_name|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Correo electrónico</th>
+                    <td>{{ perfil_usuario.email|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>DNI</th>
+                    <td>{{ perfil_usuario.dni|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ perfil_usuario.telefono|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>{{ perfil_usuario.direccion|default:"-" }}</td>
+                </tr>
+                <tr>
+                    <th>Rol</th>
+                    <td>{{ perfil_usuario.get_rol_display }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ perfil_usuario.is_active|yesno:"Activo,Inactivo" }}</td>
+                </tr>
+                <tr>
+                    <th>Último acceso</th>
+                    <td>
+                        {% if perfil_usuario.last_login %}{{ perfil_usuario.last_login|date:"d/m/Y H:i" }}{% else %}-{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha de alta</th>
+                    <td>{{ perfil_usuario.date_joined|date:"d/m/Y H:i" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<nav class="nav-calidad">
+    <a href="{% url 'calidad:control_mp' %}" class="{% if request.resolver_match.url_name == 'control_mp' %}activo{% endif %}">Control Materia Prima</a>
+    <a href="{% url 'calidad:liberar_lote' %}" class="{% if request.resolver_match.url_name == 'liberar_lote' %}activo{% endif %}">Liberación de Lotes</a>
+    <a href="{% url 'calidad:historial' %}" class="{% if request.resolver_match.url_name == 'historial' %}activo{% endif %}">Historial</a>
+</nav>

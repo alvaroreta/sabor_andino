@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Historial de Calidad - Sabor Andino{% endblock %}
+
+{% block content %}
+<div>
+    {% include 'calidad/_nav.html' %}
+
+    <h1>Historial de Planillas de Calidad</h1>
+
+    <div class="tabla-responsive">
+        <table class="tabla-estandar">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Acopio / Lote</th>
+                    <th>Humedad (%)</th>
+                    <th>Granulometría</th>
+                    <th>Mat. Extraña (%)</th>
+                    <th>Resultado</th>
+                    <th>Evaluador</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in planillas %}
+                <tr>
+                    <td>{{ p.id_planilla_calidad }}</td>
+                    <td>{{ p.fecha_evaluacion|date:"d/m/Y H:i" }}</td>
+                    <td>{{ p.get_tipo_evaluacion_display }}</td>
+                    <td>
+                        {% if p.id_detalle_acopio %}Acopio: {{ p.id_detalle_acopio }}
+                        {% elif p.id_lote %}Lote: {{ p.id_lote }}
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>{{ p.humedad_lab|default:"-" }}</td>
+                    <td>{{ p.granulometria|default:"-" }}</td>
+                    <td>{{ p.materia_extrana|default:"-" }}</td>
+                    <td>{{ p.get_resultado_display }}</td>
+                    <td>{{ p.id_usuario.first_name }} {{ p.id_usuario.last_name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="celda-vacia">Todavía no hay evaluaciones registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

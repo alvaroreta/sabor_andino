@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} Lote #{{ lote.id_lote }} - Sabor Andino {% endblock %}
+
+{% block content %}
+    <a href="{% url 'produccion:lista_lotes' %}" class="enlace-volver">← Volver a lotes</a>
+
+    <h1>Lote #{{ lote.id_lote }} - {{ lote.id_producto }}</h1>
+    <p>
+        Fecha: {{ lote.fecha_elaboracion|date:"d/m/Y" }} {{ lote.hora_elaboracion|time:"H:i" }} |
+        Cantidad: {{ lote.cantidad_producto }}
+    </p>
+
+    <h2>Materia prima utilizada</h2>
+    <div class="tabla-responsive">
+        <table class="tabla-estandar">
+            <thead>
+                <tr><th>Materia prima</th><th>Cantidad (kg)</th></tr>
+            </thead>
+            <tbody>
+                {% for c in consumos %}
+                <tr>
+                    <td>{{ c.id_materia_prima }}</td>
+                    <td>{{ c.cantidad_utilizada_kg }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="celda-vacia">Todavía no se cargó ningún insumo.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Agregar insumo</h3>
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Agregar</button>
+        </div>
+    </form>
+{% endblock %}

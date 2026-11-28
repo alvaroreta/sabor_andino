@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Control de Materia Prima - Sabor Andino{% endblock %}
+
+{% block content %}
+<div>
+    {% include 'calidad/_nav.html' %}
+
+    {% for message in messages %}
+        <p><strong>{{ message }}</strong></p>
+    {% endfor %}
+
+    <h1>Análisis de Ingreso de Materia Prima</h1>
+
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-ingresar">Guardar Análisis</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

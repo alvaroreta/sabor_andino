@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de Usuarios - Sabor Andino{% endblock %}
+
+{% block content %}
+<h1>Gestión de Usuarios</h1>
+
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'usuarios:crear' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block;">+ Nuevo usuario</a>
+</div>
+
+<div class="tabla-responsive">
+    <table class="tabla-estandar">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.last_name }}</td>
+                <td>{{ usuario.first_name }}</td>
+                <td>{{ usuario.get_rol_display }}</td>
+                <td>
+                    <div class="acciones">
+                        <a href="{% url 'usuarios:detalle' usuario.pk %}" class="btn-tabla">VER</a>
+                        <button type="button" class="btn-tabla">EDITAR</button>
+                        <button type="button" class="btn-tabla btn-tabla-peligro">ELIMINAR</button>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="celda-vacia">No hay usuarios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
