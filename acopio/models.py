@@ -73,7 +73,6 @@ class ComprobanteAcopio(models.Model):
     def __str__(self):
         return f"ACO-{self.id_comprobante_acopio:05d} | {self.id_proveedor.nombre}"
 
-
 class DetalleAcopio(models.Model):
     id_detalle_acopio = models.AutoField(primary_key=True)
     id_comprobante_acopio = models.ForeignKey(ComprobanteAcopio, on_delete=models.CASCADE, related_name='detalles', verbose_name='Comprobante')

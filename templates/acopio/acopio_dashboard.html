@@ -14,9 +14,13 @@
 {% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
 <h1>Gestión de Acopio (Cachi)</h1>
 
-<div style="margin-bottom: 20px;">
-    <a href="{% url 'acopio:carga_acopio' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block;">+ Cargar Nuevo Pesaje</a>
-    <a href="{% url 'acopio:lista_proveedores' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block; background-color: #4a5568;">Ver Proveedores</a>
+<!-- Botonera principal -->
+<div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="{% url 'acopio:carga_acopio' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px;">+ Cargar Nuevo Pesaje</a>
+    <a href="{% url 'acopio:lista_proveedores' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; background-color: #4a5568;">Ver Proveedores</a>
+    <a href="{% url 'acopio:crear_proveedor' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; background-color: #2d3748;">+ Nuevo Proveedor</a>
+    <a href="{% url 'acopio:lista_materias_primas' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; background-color: #2b6cb0;">Ver Materias Primas</a>
+    <a href="{% url 'acopio:crear_materia_prima' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; background-color: #3182ce;">+ Nueva Materia Prima</a>
 </div>
 
 <div class="cont-prin">
@@ -27,6 +31,7 @@
                 <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <th style="padding: 10px;">N° Comprobante</th>
                     <th style="padding: 10px;">Proveedor</th>
+                    <th style="padding: 10px;">Materia Prima</th>
                     <th style="padding: 10px;">Fecha</th>
                     <th style="padding: 10px;">Bruto (Kg)</th>
                     <th style="padding: 10px;">Tara (Kg)</th>
@@ -39,6 +44,13 @@
                 <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
                     <td style="padding: 10px;"><strong>ACO-{{ c.id_comprobante_acopio|stringformat:"05d" }}</strong></td>
                     <td style="padding: 10px;">{{ c.id_proveedor.nombre }}</td>
+                    <td style="padding: 10px; font-weight: bold; color: #2d3748;">
+                        {% for detalle in c.detalles.all %}
+                            {{ detalle.id_materia_prima.nombre }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            <span style="color: #a0aec0; font-style: italic;">Sin asignar</span>
+                        {% endfor %}
+                    </td>
                     <td style="padding: 10px;">{{ c.fecha_emision|date:"d/m/Y" }}</td>
                     <td style="padding: 10px;">{{ c.kilos_brutos }}</td>
                     <td style="padding: 10px;">{{ c.tara }}</td>

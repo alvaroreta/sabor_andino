@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nueva Materia Prima - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
+<h1>Registrar Nueva Materia Prima</h1>
+
+<div class="cont-prin">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="boton-ingresar">Guardar Materia Prima</button>
+        <a href="{% url 'acopio:lista_materias_primas' %}" class="btn-logout" style="text-decoration: none; display: inline-block; margin-left: 10px;">Cancelar</a>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

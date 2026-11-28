@@ -21,30 +21,32 @@
 
 <div class="cont-prin">
     {% if proveedores %}
-        <table style="width: 100%; border-collapse: collapse;">
+    <div class="tabla-responsive">
+        <table class="tabla-estandar">
             <thead>
-                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-                    <th style="padding: 10px;">ID</th>
-                    <th style="padding: 10px;">Nombre / Razón Social</th>
-                    <th style="padding: 10px;">Teléfono</th>
-                    <th style="padding: 10px;">Dirección / Localidad</th>
-                    <th style="padding: 10px;">Rubro</th>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre / Razón Social</th>
+                    <th>Teléfono</th>
+                    <th>Dirección / Localidad</th>
+                    <th>Rubro</th>
                 </tr>
             </thead>
             <tbody>
                 {% for p in proveedores %}
-                <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
-                    <td style="padding: 10px;">{{ p.id_proveedor }}</td>
-                    <td style="padding: 10px; font-weight: bold;">{{ p.nombre }}</td>
-                    <td style="padding: 10px;">{{ p.telefono }}</td>
-                    <td style="padding: 10px;">{{ p.direccion }}</td>
-                    <td style="padding: 10px;">{{ p.rubro }}</td>
+                <tr>
+                    <td>{{ p.id_proveedor }}</td>
+                    <td><strong>{{ p.nombre }}</strong></td>
+                    <td>{{ p.telefono }}</td>
+                    <td>{{ p.direccion }}</td>
+                    <td>{{ p.rubro }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     {% else %}
-        <p>No hay proveedores registrados aún.</p>
+    <p>No hay proveedores registrados aún.</p>
     {% endif %}
 </div>
 {% endif %}

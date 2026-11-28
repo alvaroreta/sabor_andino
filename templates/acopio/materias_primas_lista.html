@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Materias Primas - Sabor Andino{% endblock %}
+
+{% block content %}
+{% if user.rol == 'ACOPIADOR' or user.rol == 'SOCIO_GERENTE' %}
+<h1>Materias Primas Registradas</h1>
+
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'acopio:crear_materia_prima' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block;">+ Cargar Nueva Materia Prima</a>
+    <a href="{% url 'acopio:acopio_dashboard' %}" class="boton-ingresar" style="text-decoration: none; padding: 10px 20px; display: inline-block; background-color: #4a5568;">Volver a Acopio</a>
+</div>
+
+<div class="cont-prin">
+    {% if materias_primas %}
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f8f9fa;">
+                    <th style="padding: 10px;">ID</th>
+                    <th style="padding: 10px;">Materia Prima</th>
+                    <th style="padding: 10px;">Proveedor</th>
+                    <th style="padding: 10px;">Stock (Kg)</th>
+                    <th style="padding: 10px;">Estado Calidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mp in materias_primas %}
+                <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
+                    <td style="padding: 10px;">{{ mp.id_materia_prima }}</td>
+                    <td style="padding: 10px; font-weight: bold;">{{ mp.nombre }}</td>
+                    <td style="padding: 10px;">{{ mp.id_proveedor.nombre }}</td>
+                    <td style="padding: 10px; color: #2b6cb0; font-weight: bold;">{{ mp.stock_kilos }} kg</td>
+                    <td style="padding: 10px;">{{ mp.get_estado_calidad_display }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay materias primas registradas.</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

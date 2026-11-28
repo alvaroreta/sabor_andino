@@ -15,6 +15,7 @@ class AjusteStock(models.Model):
         SALDO_INICIAL = 'SALDO_INICIAL', 'Saldo inicial'
 
     id_ajuste = models.AutoField(primary_key=True)
+    is_active = models.BooleanField('Activo', default=True)
 
     id_usuario = models.ForeignKey(
         settings.AUTH_USER_MODEL,

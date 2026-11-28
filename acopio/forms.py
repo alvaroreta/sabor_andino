@@ -8,36 +8,48 @@ class ProveedorForm(forms.ModelForm):
         fields = ['nombre', 'telefono', 'direccion', 'rubro']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre / Razón Social'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ej: 3874123456'}),
-            'direccion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Dirección / Localidad'}),
-            'rubro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ej: Productor Agrícola'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
+            'direccion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Dirección'}),
+            'rubro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Rubro'}),
         }
 
 
 class MateriaPrimaForm(forms.ModelForm):
     class Meta:
         model = MateriaPrima
-        fields = ['id_proveedor', 'nombre', 'stock_kilos', 'descripcion', 'precio_compra', 'peso_grs', 'estado_calidad']
+        fields = ['id_proveedor', 'nombre', 'stock_kilos', 'descripcion', 'precio_compra', 'peso_grs']
         widgets = {
             'id_proveedor': forms.Select(attrs={'class': 'form-select'}),
-            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ej: Pimentón o Ají'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ej: Pimentón Dulce'}),
             'stock_kilos': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Descripción u observaciones'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'precio_compra': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'peso_grs': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'estado_calidad': forms.Select(attrs={'class': 'form-select'}),
         }
 
 
 class ComprobanteAcopioForm(forms.ModelForm):
+    materia_prima = forms.ModelChoiceField(
+        queryset=MateriaPrima.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label='Materia Prima Recibida'
+    )
+    precio_unitario = forms.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        initial=0.00,
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+        label='Precio Unitario ($)'
+    )
+
     class Meta:
         model = ComprobanteAcopio
-        fields = ['id_proveedor', 'kilos_brutos', 'tara', 'porcentaje_humedad']
+        fields = ['id_proveedor', 'materia_prima', 'kilos_brutos', 'tara', 'porcentaje_humedad', 'precio_unitario']
         widgets = {
             'id_proveedor': forms.Select(attrs={'class': 'form-select'}),
-            'kilos_brutos': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01', 'placeholder': 'Kilos brutos'}),
-            'tara': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01', 'placeholder': 'Tara'}),
-            'porcentaje_humedad': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01', 'placeholder': '0.00 a 100.00'}),
+            'kilos_brutos': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+            'tara': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+            'porcentaje_humedad': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
         }
 
 
